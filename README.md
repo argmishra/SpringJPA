@@ -1,2 +1,4 @@
-# SpringJPA
-This repo consists of code for the essentials functionality of Spring JPA.
+Spring JPA 
+==========
+
+## Spring JPA
