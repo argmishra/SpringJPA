@@ -20,20 +20,21 @@ public class UserController {
 	private UserRepo userRepo;
 
 	@GetMapping(value = "/one")
-	public User findByFirstName(@RequestBody User user) {
+	public User findByParameter(@RequestBody User user) {
 		log.info("Performing operation one " +user);
 		return userRepo.findByFirstname(user.getFirstname());
 	}
 	
 	@GetMapping(value = "/two")
-	public User findByFirstnameAndLastname(@RequestBody User user) {
+	public User findByTwoParameters(@RequestBody User user) {
 		log.info("Performing operation two " +user);
 		return userRepo.findByFirstnameAndLastname(user.getFirstname(), user.getLastname());
 	}
 	
 	@GetMapping(value = "/three")
-	public User findByFirstnameAndLastnameWithNullOneValue(@RequestBody User user) {
+	public User findByMultipleParameters(@RequestBody User user) {
 		log.info("Performing operation three " +user);
-		return userRepo.findByFirstnameAndLastname(user.getFirstname(), user.getLastname());
+		return userRepo.findByAgeAndActiveAndStartDate(user.getAge(), user.isActive(), user.getStartDate());
 	}
+	
 }
