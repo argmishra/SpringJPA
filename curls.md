@@ -4,6 +4,11 @@ Search with named query annotation
 curl -X GET "http://localhost:8080/users/namedquery/27"
 ```
 
+Search with query annotation
+```curl
+curl -X GET "http://localhost:8080/users/query/true"
+```
+
 Search with one parameter
 ```curl
 curl -X GET -H "Content-Type:application/json" -d "{\"firstname\": \"Anurag\"}" http://localhost:8080/users/one

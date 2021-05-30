@@ -110,7 +110,7 @@ public class UserController {
 	@GetMapping(value = "/thirteen")
 	public List<User> findByAfter(@RequestBody User user) {
 		log.info("Performing operation thirteen " + user);
-		return userRepo.findByStartDateAfter(user.getStartDate());
+		return userRepo.findByStartDateAfter(user.getStartDate(),  Sort.by("age").ascending());
 	}
 
 	@GetMapping(value = "/fourteen")
@@ -126,11 +126,17 @@ public class UserController {
 	}
 
 	@GetMapping(value = "/namedquery/{age}")
-	public List<User> findByQuery(@PathVariable(name = "age") int age) {
-		log.info("Performing operation query " + age);
+	public List<User> findByNamedQuery(@PathVariable(name = "age") int age) {
+		log.info("Performing operation named query " + age);
 		Query query = entityManager.createNamedQuery("User.findAllByAgeOrderedByIdDescending");
 		query.setParameter("age", age);
 		return query.getResultList();
+	}
+	
+	@GetMapping(value = "/query/{active}")
+	public List<User> findByQuery(@PathVariable(name = "active") Boolean active) {
+		log.info("Performing operation query " + active);
+		return userRepo.findByQuery(active);
 	}
 
 }

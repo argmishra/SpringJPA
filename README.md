@@ -17,5 +17,8 @@ Spring Data JPA API provides JpaTemplate class to integrate spring application w
 | Before        | Result if values after given date     |
 
 ## Sample
-<a href="curls.md">Sample</a>
+<a href="curls.md">![Sample](sample.jpg)</a>
+
+![Sample](sample.jpg)
+
 
