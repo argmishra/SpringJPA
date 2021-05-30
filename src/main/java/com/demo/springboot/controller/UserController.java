@@ -1,9 +1,7 @@
 package com.demo.springboot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +25,7 @@ public class UserController {
 		return userRepo.findByFirstname(user.getFirstname());
 	}
 	
-	@PostMapping(value = "/two")
+	@GetMapping(value = "/two")
 	public User findByFirstnameAndLastname(@RequestBody User user) {
 		log.info("Performing operation two " +user);
 		return userRepo.findByFirstnameAndLastname(user.getFirstname(), user.getLastname());
