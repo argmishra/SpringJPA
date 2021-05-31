@@ -88,3 +88,63 @@ Search with After and GreaterThanEqual keyword
 ```curl
 curl -X GET -H "Content-Type:application/json" -d "{\"startDate\": \"2021-03-05\", \"age\":27 }" http://localhost:8080/users/fifteen
 ```
+
+Search with Containing keyword
+```curl
+curl -X GET "http://localhost:8080/users/sixteen/arm"
+```
+
+Search with NotLike keyword
+```curl
+curl -X GET "http://localhost:8080/users/seventeen/Sharma"
+```
+
+Search with StartingWith keyword
+```curl
+curl -X GET "http://localhost:8080/users/eighteen/Him"
+```
+
+Search with EndingWith keyword
+```curl
+curl -X GET "http://localhost:8080/users/nineteen/rag"
+```
+
+Search with IgnoreCase keyword
+```curl
+curl -X GET "http://localhost:8080/users/twenty/ANURAG"
+```
+
+Search with IgnoreCase and StartingWith keyword
+```curl
+curl -X GET "http://localhost:8080/users/twentyone/AbH"
+```
+
+Search with True keyword
+```curl
+curl -X GET "http://localhost:8080/users/twentytwo"
+```
+
+Search with False keyword
+```curl
+curl -X GET "http://localhost:8080/users/twentythree"
+```
+
+Search with Not keyword
+```curl
+curl -X GET "http://localhost:8080/users/twentyfour/Himani"
+```
+
+Search with In keyword
+```curl
+curl -X GET -H "Content-Type:application/json" -d" ["27","29"]" http://localhost:8080/users/twentyfive
+```
+
+Search with NotIn keyword
+```curl
+curl -X GET -H "Content-Type:application/json" -d" ["27","29"]" http://localhost:8080/users/twentysix
+```
+
+Search with OrderBy and  Asc keyword
+```curl
+curl -X GET "http://localhost:8080/users/twentyseven/Anurag"
+```

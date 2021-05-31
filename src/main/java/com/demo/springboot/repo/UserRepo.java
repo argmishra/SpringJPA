@@ -11,8 +11,8 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.demo.springboot.model.User;
 
-public interface UserRepo extends JpaRepository<User, Long> {	
-	
+public interface UserRepo extends JpaRepository<User, Long> {
+
 	@Query(value = "SELECT u FROM User u where u.active = ?1 ORDER BY u.id ASC")
 	List<User> findByQuery(Boolean active);
 
@@ -48,4 +48,27 @@ public interface UserRepo extends JpaRepository<User, Long> {
 
 	List<User> findByStartDateAfterAndAgeGreaterThanEqual(Date date, int age);
 
+	List<User> findByLastnameContaining(String name);
+
+	List<User> findByLastnameNotLike(String name);
+
+	List<User> findByFirstnameStartingWith(String name);
+
+	List<User> findByFirstnameEndingWith(String name);
+
+	List<User> findByFirstnameIgnoreCase(String name);
+
+	List<User> findByFirstnameIgnoreCaseStartingWith(String name);
+
+	List<User> findByActiveTrue();
+
+	List<User> findByActiveFalse();
+
+	List<User> findByFirstnameNot(String name);
+
+	List<User> findByAgeIn(List<Integer> ages);
+
+	List<User> findByAgeNotIn(List<Integer> ages);
+
+	List<User> findByFirstnameOrderByIdAsc(String name);
 }

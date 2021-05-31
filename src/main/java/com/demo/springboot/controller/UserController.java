@@ -29,9 +29,29 @@ public class UserController {
 
 	@Autowired
 	private UserRepo userRepo;
-	
+
 	@Autowired
-    private EntityManager entityManager;
+	private EntityManager entityManager;
+
+	@GetMapping(value = "/parameternamedquery/{age}")
+	public List<User> findByNamedQueryWithParameter(@PathVariable(name = "age") int age) {
+		log.info("Performing operation named query with parameter " + age);
+		Query query = entityManager.createNamedQuery("User.findAllByAgeOrderedByIdDescending");
+		query.setParameter("age", age);
+		return query.getResultList();
+	}
+
+	@GetMapping(value = "/query/{active}")
+	public List<User> findByQuery(@PathVariable(name = "active") Boolean active) {
+		log.info("Performing operation query " + active);
+		return userRepo.findByQuery(active);
+	}
+
+	@GetMapping(value = "/namedquery")
+	public List<User> findByNamedQueryWithoutParameter() {
+		log.info("Performing operation named query with out parameter");
+		return userRepo.findAllOrderedByIdAscending();
+	}
 
 	@GetMapping(value = "/one")
 	public User findByParameter(@RequestBody User user) {
@@ -125,24 +145,76 @@ public class UserController {
 		return userRepo.findByStartDateAfterAndAgeGreaterThanEqual(user.getStartDate(), user.getAge());
 	}
 
-	@GetMapping(value = "/parameternamedquery/{age}")
-	public List<User> findByNamedQueryWithParameter(@PathVariable(name = "age") int age) {
-		log.info("Performing operation named query with parameter " + age);
-		Query query = entityManager.createNamedQuery("User.findAllByAgeOrderedByIdDescending");
-		query.setParameter("age", age);
-		return query.getResultList();
+	@GetMapping(value = "/sixteen/{name}")
+	public List<User> findByContaining(@PathVariable(name = "name") String name) {
+		log.info("Performing operation sixteen : name " + name);
+		return userRepo.findByLastnameContaining(name);
 	}
-	
-	@GetMapping(value = "/query/{active}")
-	public List<User> findByQuery(@PathVariable(name = "active") Boolean active) {
-		log.info("Performing operation query " + active);
-		return userRepo.findByQuery(active);
+
+	@GetMapping(value = "/seventeen/{name}")
+	public List<User> findByNotLike(@PathVariable(name = "name") String name) {
+		log.info("Performing operation seventeen : name " + name);
+		return userRepo.findByLastnameNotLike(name);
 	}
-	
-	@GetMapping(value = "/namedquery")
-	public List<User> findByNamedQueryWithoutParameter() {
-		log.info("Performing operation named query with out parameter");
-		return userRepo.findAllOrderedByIdAscending();
+
+	@GetMapping(value = "/eighteen/{name}")
+	public List<User> findByStartingWith(@PathVariable(name = "name") String name) {
+		log.info("Performing operation eighteen : name " + name);
+		return userRepo.findByFirstnameStartingWith(name);
+	}
+
+	@GetMapping(value = "/nineteen/{name}")
+	public List<User> findByEndingWith(@PathVariable(name = "name") String name) {
+		log.info("Performing operation nineteen : name " + name);
+		return userRepo.findByFirstnameEndingWith(name);
+	}
+
+	@GetMapping(value = "/twenty/{name}")
+	public List<User> findByIgnoreCase(@PathVariable(name = "name") String name) {
+		log.info("Performing operation twenty : name " + name);
+		return userRepo.findByFirstnameIgnoreCase(name);
+	}
+
+	@GetMapping(value = "/twentyone/{name}")
+	public List<User> findByIgnoreCaseAndStartingWith(@PathVariable(name = "name") String name) {
+		log.info("Performing operation twentyone : name " + name);
+		return userRepo.findByFirstnameIgnoreCaseStartingWith(name);
+	}
+
+	@GetMapping(value = "/twentytwo")
+	public List<User> findByTrue() {
+		log.info("Performing operation twentytwo");
+		return userRepo.findByActiveTrue();
+	}
+
+	@GetMapping(value = "/twentythree")
+	public List<User> findByFalse() {
+		log.info("Performing operation twentyThree");
+		return userRepo.findByActiveFalse();
+	}
+
+	@GetMapping(value = "/twentyfour/{name}")
+	public List<User> findByNot(@PathVariable(name = "name") String name) {
+		log.info("Performing operation twentyfour : name " + name);
+		return userRepo.findByFirstnameNot(name);
+	}
+
+	@GetMapping(value = "/twentyfive")
+	public List<User> findByIn(@RequestBody List<Integer> ages) {
+		log.info("Performing operation twentyfive : ages " + ages);
+		return userRepo.findByAgeIn(ages);
+	}
+
+	@GetMapping(value = "/twentysix")
+	public List<User> findByNot(@RequestBody List<Integer> ages) {
+		log.info("Performing operation twentysix : ages " + ages);
+		return userRepo.findByAgeNotIn(ages);
+	}
+
+	@GetMapping(value = "/twentyseven/{name}")
+	public List<User> findOrderBy(@PathVariable(name = "name") String name) {
+		log.info("Performing operation twentyseven : name " + name);
+		return userRepo.findByFirstnameOrderByIdAsc(name);
 	}
 
 }
