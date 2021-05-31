@@ -19,8 +19,8 @@ import lombok.ToString;
 @Entity
 @Table(name = "user")
 @Getter @Setter @AllArgsConstructor @ToString @NoArgsConstructor
-@NamedQuery(name = "User.findAllByAgeOrderedByIdDescending",
-query = "SELECT u FROM User u where u.age > :age ORDER BY u.id ASC")
+@NamedQuery(name = "User.findAllByAgeOrderedByIdDescending",query = "SELECT u FROM User u where u.age > :age ORDER BY u.id DESC")
+@NamedQuery(name = "User.findAllOrderedByIdAscending",query = "SELECT u FROM User u ORDER BY u.id ASC")
 public class User {
 
 	@Id

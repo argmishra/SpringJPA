@@ -16,6 +16,8 @@ public interface UserRepo extends JpaRepository<User, Long> {
 	@Query(value = "SELECT u FROM User u where u.active = ?1 ORDER BY u.id ASC")
 	List<User> findByQuery(Boolean active);
 
+	List<User> findAllOrderedByIdAscending();
+
 	User findByFirstname(String firstname);
 
 	User findByFirstnameAndLastname(String firstname, String lastname);

@@ -1,7 +1,12 @@
 ## Sample
-Search with named query annotation
+Search with named query annotation with parameter
 ```curl
-curl -X GET "http://localhost:8080/users/namedquery/27"
+curl -X GET "http://localhost:8080/users/parameternamedquery/27"
+```
+
+Search with named query annotation without parameter
+```curl
+curl -X GET "http://localhost:8080/users/namedquery"
 ```
 
 Search with query annotation
