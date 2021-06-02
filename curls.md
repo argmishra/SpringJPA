@@ -144,7 +144,72 @@ Search with NotIn keyword
 curl -X GET -H "Content-Type:application/json" -d" ["27","29"]" http://localhost:8080/users/twentysix
 ```
 
-Search with OrderBy and  Asc keyword
+Search with OrderBy and Asc keyword
 ```curl
 curl -X GET "http://localhost:8080/users/twentyseven/Anurag"
+```
+
+Search with Like keyword
+```curl
+curl -X GET "http://localhost:8080/users/twentyeight/%25nu%25"
+```
+
+Search with StartsWith keyword
+```curl
+curl -X GET "http://localhost:8080/users/twentynine/Abh"
+```
+
+Search with EndsWith keyword
+```curl
+curl -X GET "http://localhost:8080/users/thirty/av"
+```
+
+Search with First keyword
+```curl
+curl -X GET "http://localhost:8080/users/thirtyone"
+```
+
+Search with Top keyword
+```curl
+curl -X GET "http://localhost:8080/users/thirtytwo"
+```
+
+Search with Distinct keyword
+```curl
+curl -X GET "http://localhost:8080/users/thirtythree/Sharma"
+```
+
+Search with Count keyword
+```curl
+curl -X GET "http://localhost:8080/users/thirtyfour/23"
+```
+
+Search with Find keyword
+```curl
+curl -X GET "http://localhost:8080/users/thirtyfive"
+```
+
+Search with Read keyword
+```curl
+curl -X GET "http://localhost:8080/users/thirtysix"
+```
+
+Search with Query keyword
+```curl
+curl -X GET "http://localhost:8080/users/thirtyseven"
+```
+
+Search with Get keyword
+```curl
+curl -X GET "http://localhost:8080/users/thirtyeight"
+```
+
+Search with Null keyword
+```curl
+curl -X GET "http://localhost:8080/users/thirtynine"
+```
+
+Search with isNot keyword
+```curl
+curl -X GET "http://localhost:8080/users/fourty/Anurag"
 ```

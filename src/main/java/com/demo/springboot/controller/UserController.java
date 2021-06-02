@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.demo.springboot.model.LastNameOnly;
 import com.demo.springboot.model.User;
 import com.demo.springboot.repo.UserRepo;
 
@@ -68,31 +69,31 @@ public class UserController {
 	@GetMapping(value = "/three")
 	public User findByMultipleParametersWithAnd(@RequestBody User user) {
 		log.info("Performing operation three " + user);
-		return userRepo.findByAgeAndActiveAndStartDate(user.getAge(), user.isActive(), user.getStartDate());
+		return userRepo.findByAgeAndActiveAndStartDate(user.getAge(), user.getActive(), user.getStartDate());
 	}
 
 	@GetMapping(value = "/four")
 	public List<User> findByMultipleParametersWithOr(@RequestBody User user) {
 		log.info("Performing operation four " + user);
-		return userRepo.findByAgeOrActiveOrFirstname(user.getAge(), user.isActive(), user.getFirstname());
+		return userRepo.findByAgeOrActiveOrFirstname(user.getAge(), user.getActive(), user.getFirstname());
 	}
 
 	@GetMapping(value = "/five")
 	public List<User> findByMultipleParametersWithAndOr(@RequestBody User user) {
 		log.info("Performing operation five " + user);
-		return userRepo.findByAgeOrActiveAndFirstname(user.getAge(), user.isActive(), user.getFirstname());
+		return userRepo.findByAgeOrActiveAndFirstname(user.getAge(), user.getActive(), user.getFirstname());
 	}
 
 	@GetMapping(value = "/six")
 	public List<User> findByMultipleParametersIs(@RequestBody User user) {
 		log.info("Performing operation six " + user);
-		return userRepo.findByAgeOrActiveIs(user.getAge(), user.isActive());
+		return userRepo.findByAgeOrActiveIs(user.getAge(), user.getActive());
 	}
 
 	@GetMapping(value = "/seven")
 	public List<User> findByMultipleParametersEquals(@RequestBody User user) {
 		log.info("Performing operation seven " + user);
-		return userRepo.findByAgeOrActiveEquals(user.getAge(), user.isActive());
+		return userRepo.findByAgeOrActiveEquals(user.getAge(), user.getActive());
 	}
 
 	@GetMapping(value = "/eight")
@@ -215,6 +216,84 @@ public class UserController {
 	public List<User> findOrderBy(@PathVariable(name = "name") String name) {
 		log.info("Performing operation twentyseven : name " + name);
 		return userRepo.findByFirstnameOrderByIdAsc(name);
+	}
+
+	@GetMapping(value = "/twentyeight/{name}")
+	public List<User> findByLike(@PathVariable(name = "name") String name) {
+		log.info("Performing operation twentyeight : name " + name);
+		return userRepo.findByFirstnameLike(name);
+	}
+
+	@GetMapping(value = "/twentynine/{name}")
+	public List<User> findByStartsWith(@PathVariable(name = "name") String name) {
+		log.info("Performing operation twentynine : name " + name);
+		return userRepo.findByFirstnameStartsWith(name);
+	}
+
+	@GetMapping(value = "/thirty/{name}")
+	public List<User> findByEndsWith(@PathVariable(name = "name") String name) {
+		log.info("Performing operation thirty : name " + name);
+		return userRepo.findByFirstnameEndsWith(name);
+	}
+
+	@GetMapping(value = "/thirtyone")
+	public List<User> findByTop() {
+		log.info("Performing operation thirtyone");
+		return userRepo.findTop2ByActiveTrue();
+	}
+
+	@GetMapping(value = "/thirtytwo")
+	public List<User> findByFirst() {
+		log.info("Performing operation thirtytwo");
+		return userRepo.findFirst3ByActiveFalse();
+	}
+
+	@GetMapping(value = "/thirtythree/{name}")
+	public List<LastNameOnly> findByDistinct(@PathVariable(name = "name") String name) {
+	log.info("Performing operation thirtythree : name " + name);
+	 return userRepo.findDistinctAllByLastname(name);
+	}
+
+	@GetMapping(value = "/thirtyfour/{age}")
+	public int count(@PathVariable(name = "age") int age) {
+		log.info("Performing operation thirtythree : age " + age);
+		return userRepo.countByAge(age);
+	}
+
+	@GetMapping(value = "/thirtyfive")
+	public List<User> findBy() {
+		log.info("Performing operation thirtyfive");
+		return userRepo.findByActiveTrue();
+	}
+
+	@GetMapping(value = "/thirtysix")
+	public List<User> readBy() {
+		log.info("Performing operation thirtysix");
+		return userRepo.readByActiveTrue();
+	}
+
+	@GetMapping(value = "/thirtyseven")
+	public List<User> queryBy() {
+		log.info("Performing operation thirtyseven");
+		return userRepo.queryByActiveTrue();
+	}
+
+	@GetMapping(value = "/thirtyeight")
+	public List<User> getBy() {
+		log.info("Performing operation thirtyeight");
+		return userRepo.getByActiveFalse();
+	}
+
+	@GetMapping(value = "/thirtynine")
+	public List<User> getNull() {
+		log.info("Performing operation thirtynine");
+		return userRepo.findByAgeIsNull();
+	}
+
+	@GetMapping(value = "/fourty/{name}")
+	public List<User> findisNot(@PathVariable(name = "name") String name) {
+		log.info("Performing operation fourty : name " + name);
+		return userRepo.findByFirstnameIsNot(name);
 	}
 
 }

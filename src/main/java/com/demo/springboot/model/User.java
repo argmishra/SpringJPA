@@ -26,7 +26,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private long id;
+	private Long id;
 	
 	@Column(name = "first_name")
 	private String firstname;
@@ -38,9 +38,9 @@ public class User {
 	private Date startDate;
 	
 	@Column(name = "age")
-	private int age;
+	private Integer age;
 	
 	@Column(name = "active")
-	private boolean active;
+	private Boolean active;
 
 }

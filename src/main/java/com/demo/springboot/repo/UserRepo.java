@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import com.demo.springboot.model.LastNameOnly;
 import com.demo.springboot.model.User;
 
 public interface UserRepo extends JpaRepository<User, Long> {
@@ -71,4 +72,32 @@ public interface UserRepo extends JpaRepository<User, Long> {
 	List<User> findByAgeNotIn(List<Integer> ages);
 
 	List<User> findByFirstnameOrderByIdAsc(String name);
+
+	List<User> findByFirstnameLike(String name);
+
+	List<User> findByFirstnameStartsWith(String name);
+
+	List<User> findByFirstnameEndsWith(String name);
+
+	List<User> findTop2ByActiveTrue();
+
+	List<User> findFirst3ByActiveFalse();
+
+	int countByAge(int age);
+
+	List<User> findByLastnameEndsWith(String name);
+
+	List<User> findByAgeIsNull();
+
+	List<User> findByFirstnameIsNot(String name);
+
+	List<User> readByActiveTrue();
+
+	List<User> queryByActiveTrue();
+
+	List<User> getByActiveFalse();
+	
+	List<LastNameOnly> findDistinctAllByLastname(String name);
+
+
 }
